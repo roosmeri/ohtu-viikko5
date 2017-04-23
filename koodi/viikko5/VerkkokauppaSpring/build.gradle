@@ -1,10 +1,19 @@
 
 apply plugin: 'java'
+apply plugin: 'jacoco'
+
 
 apply plugin: 'application'
 
 repositories {
     jcenter()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
 
 dependencies {
@@ -13,6 +22,7 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-context', version:'3.1.1.RELEASE'
     compile group: 'org.springframework', name: 'spring-context-support', version:'3.1.1.RELEASE'
     compile group: 'org.springframework', name: 'spring-beans', version:'3.1.1.RELEASE'    
+    testCompile 'org.mockito:mockito-core:2.7.21'
     testCompile 'junit:junit:4.12'
 }
 
