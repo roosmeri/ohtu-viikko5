@@ -24,16 +24,16 @@ public class TennisGame {
         String score = "";
         int tempScore = 0;
         if (m_score1 == m_score2) {
-            score = evenGame();
+            score = getEvenGameScore();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
-            score = oneIsAtFourPoints();
+            score = getOneIsAtFourPointsScore();
         } else {
-            score = belowFourPoints(score);
+            score = getBelowFourPointsScore(score);
         }
         return score;
     }
 
-    private String belowFourPoints(String score) {
+    private String getBelowFourPointsScore(String score) {
         int tempScore;
         for (int i = 1; i < 3; i++) {
             if (i == 1) {
@@ -42,12 +42,12 @@ public class TennisGame {
                 score += "-";
                 tempScore = m_score2;
             }
-            score = determineCombinedScore(tempScore, score);
+            score = getCombinedScore(tempScore, score);
         }
         return score;
     }
 
-    private String determineCombinedScore(int tempScore, String score) {
+    private String getCombinedScore(int tempScore, String score) {
         switch (tempScore) {
             case 0:
                 score += "Love";
@@ -65,7 +65,7 @@ public class TennisGame {
         return score;
     }
 
-    private String evenGame() {
+    private String getEvenGameScore() {
         String score;
         switch (m_score1) {
             case 0:
@@ -88,7 +88,7 @@ public class TennisGame {
         return score;
     }
 
-    private String oneIsAtFourPoints() {
+    private String getOneIsAtFourPointsScore() {
         String score;
         int minusResult = m_score1 - m_score2;
         if (minusResult == 1) {
